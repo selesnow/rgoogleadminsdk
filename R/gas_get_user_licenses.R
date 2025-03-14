@@ -3,8 +3,6 @@ gas_get_user_licenses <- function(
     customerId = "C00le6y6i"
 ) {
 
-  base_url <- glue::glue("apps/licensing/v1/product/{product_id}/users")
-
   all_licenses <- list()
   page_token <- NULL
 
@@ -16,7 +14,7 @@ gas_get_user_licenses <- function(
     )
 
     result <- gas_make_request(
-      paste0("admin/reports/v1/usage/users/all/dates/", date),
+      glue::glue("apps/licensing/v1/product/{product_id}/users"),
       params = query_params
     )
 
