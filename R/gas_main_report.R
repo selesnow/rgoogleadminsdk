@@ -42,7 +42,7 @@ main <- function() {
       last_name = familyName,
       primary_email = primaryEmail,
       aliases = map_chr(aliases, ~ paste(.x, collapse = ", ")),
-      is_enforced = isEnforcedIn2Sv
+      is_2fa_enable = isEnforcedIn2Sv
     ) %>%
     select(
       nickname,
@@ -50,7 +50,7 @@ main <- function() {
       last_name,
       primary_email,
       aliases,
-      is_enforced,
+      is_2fa_enable,
       suspended,
       archived
     )
