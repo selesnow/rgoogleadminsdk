@@ -1,3 +1,26 @@
+#' List all users assigned licenses for a specific product SKU.
+#'
+#' @param product_id A product's unique identifier. For more information about products in this version of the API, see [Products and SKUs](https://developers.google.com/admin-sdk/licensing/v1/how-tos/products).
+#' @param customerId The customer's unique ID as defined in the Admin console, such as C00000000. If the customer is suspended, the server returns an error.
+#'
+#' @returns list
+#' @export
+#'
+#' @examples
+#' products <- c(
+#' 'Google-Apps',
+#' '101031',
+#' '101037',
+#' '101038',
+#' 'Google-Vault',
+#' '101001',
+#' '101005',
+#' '101033',
+#' '101034',
+#' '101047'
+#' )
+#'
+#' license <- map_dfr(.x = products, gas_get_user_licenses)
 gas_get_user_licenses <- function(
     product_id = "Google-Apps",
     customerId = "C00le6y6i"

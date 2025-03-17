@@ -1,3 +1,12 @@
+#' Retrieves a paginated list of either deleted users or all users in a domain.
+#'
+#' @returns tibble
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' users_data <- gas_get_users_data()
+#' }
 gas_get_users_data <- function() {
 
   # Инициализация пустого списка для всех пользователей
