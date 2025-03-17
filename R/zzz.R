@@ -25,7 +25,6 @@
   op <- options()
   op.gads <- list(gas.api.version          = "v1",
                   gas.base.url             = 'https://googleads.googleapis.com/',
-                  gas.column.name.case.fun = snakecase::to_snake_case,
                   gargle_oauth_email       = gads_email)
 
   toset <- !(names(op.gads) %in% names(op))

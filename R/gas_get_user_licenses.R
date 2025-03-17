@@ -7,6 +7,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' products <- c(
 #' 'Google-Apps',
 #' '101031',
@@ -21,6 +22,7 @@
 #' )
 #'
 #' license <- map_dfr(.x = products, gas_get_user_licenses)
+#' }
 gas_get_user_licenses <- function(
     product_id = "Google-Apps",
     customerId = "C00le6y6i"

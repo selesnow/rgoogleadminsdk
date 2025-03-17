@@ -45,7 +45,9 @@ get_drive_usage_by_user <- function(user_email, date = Sys.Date()-2) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' gas_get_user_drive_usage("all", date = Sys.Date()-2)
+#' }
 gas_get_user_drive_usage <- function(emails, date = Sys.Date()-2) {
   drive_usage <- list()
 

@@ -18,6 +18,7 @@ list
 List all users assigned licenses for a specific product SKU.
 }
 \examples{
+\dontrun{
 products <- c(
 'Google-Apps',
 '101031',
@@ -32,4 +33,5 @@ products <- c(
 )
 
 license <- map_dfr(.x = products, gas_get_user_licenses)
+}
 }

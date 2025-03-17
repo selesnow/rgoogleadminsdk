@@ -21,5 +21,7 @@ Retrieves a report which is a collection of properties and statistics for a set 
 For more information, see the \href{https://developers.google.com/admin-sdk/reports/v1/guides/manage-usage-users}{User Usage Report guide}.
 }
 \examples{
+\dontrun{
 gas_get_user_drive_usage("all", date = Sys.Date()-2)
+}
 }
