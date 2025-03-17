@@ -22,7 +22,7 @@ main <- function() {
   users_data <- gas_get_users_data()
 
   # Получаем данные об использовании диска
-  drive_usage <- gas_get_user_drive_usage(users_data$primaryEmail)
+  drive_usage <- gas_get_user_drive_usage(emails = 'all', date = Sys.Date() - 4)
 
   # Получаем список лицензий
   license <- map_dfr(.x = products, gas_get_user_licenses) %>%
@@ -37,14 +37,12 @@ main <- function() {
   final_data <- users_data %>%
     unnest_wider(name) %>%
     mutate(
-      nickname = ifelse(!is.null(aliases), aliases[1], NA),
+      nickname = NA,#ifelse(!is.null(aliases), aliases[1], NA),
       first_name = givenName,
       last_name = familyName,
       primary_email = primaryEmail,
       aliases = map_chr(aliases, ~ paste(.x, collapse = ", ")),
-      is_enforced = isEnforcedIn2Sv,
-      #license_type = licenses$skuId,
-      account_status = suspended
+      is_enforced = isEnforcedIn2Sv
     ) %>%
     select(
       nickname,
@@ -53,8 +51,8 @@ main <- function() {
       primary_email,
       aliases,
       is_enforced,
-      #license_type,
-      account_status
+      suspended,
+      archived
     )
 
   # Добавляем данные об использовании диска
@@ -66,7 +64,8 @@ main <- function() {
         list(drive_usage[[primary_email]]),
         NA
       )
-    )
+    ) %>%
+    unnest_wider(drive_usage)
 
   # Добавляем данные про лицензии
   final_data <- left_join(final_data, license, join_by(primary_email == userId))
