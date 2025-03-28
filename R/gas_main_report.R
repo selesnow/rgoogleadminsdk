@@ -18,8 +18,11 @@ products <- c(
 )
 
 
+
 # Основная функция
 main <- function() {
+
+  gas_auth('a.seleznev@netpeak.group')
 
   # Получаем данные о пользователях
   users_data <- gas_get_users_data() %>%
@@ -32,7 +35,9 @@ main <- function() {
 
   # Получаем данные об использовании диска
   drive_usage <- gas_get_user_drive_usage(emails = 'all', date = Sys.Date() - 4)
-
+  test <- tibble(data = list(drive_usage)) %>%
+    unnest_longer(data) %>%
+    unnest_wider(data)
   # Получаем список лицензий
   license <- map_dfr(.x = products, gas_get_user_licenses) %>%
              filter(skuName != 'Cloud Identity Free')

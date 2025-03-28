@@ -6,7 +6,7 @@
 #' @returns tibble
 get_drive_usage_by_user <- function(user_email, date = Sys.Date()-2) {
   query_params <- list(
-    parameters = "accounts:drive_used_quota_in_mb,accounts:gmail_used_quota_in_mb,accounts:gplus_photos_used_quota_in_mb,accounts:total_quota_in_mb",
+    parameters = "accounts:drive_used_quota_in_mb,accounts:gmail_used_quota_in_mb,accounts:gplus_photos_used_quota_in_mb,accounts:total_quota_in_mb,accounts:used_quota_in_mb",
     userKey = user_email,
     maxResults = 1000
   )
@@ -48,7 +48,7 @@ get_drive_usage_by_user <- function(user_email, date = Sys.Date()-2) {
 #' \dontrun{
 #' gas_get_user_drive_usage("all", date = Sys.Date()-2)
 #' }
-gas_get_user_drive_usage <- function(emails, date = Sys.Date()-2) {
+gas_get_user_drive_usage <- function(emails, date = Sys.Date()-3) {
   drive_usage <- list()
 
   if (all(emails == "all")) {
@@ -60,7 +60,8 @@ gas_get_user_drive_usage <- function(emails, date = Sys.Date()-2) {
         drive_used_quota_in_mb = as.numeric(report$parameters[[1]]$intValue),
         gmail_used_quota_in_mb = as.numeric(report$parameters[[2]]$intValue),
         gplus_photos_used_quota_in_mb = as.numeric(report$parameters[[3]]$intValue),
-        total_quota_in_mb = as.numeric(report$parameters[[4]]$intValue)
+        total_quota_in_mb = as.numeric(report$parameters[[4]]$intValue),
+        available_quota_in_mb = as.numeric(report$parameters[[5]]$intValue)
       )
     }
   } else {
