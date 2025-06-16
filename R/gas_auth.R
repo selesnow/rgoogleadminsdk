@@ -61,11 +61,12 @@ gargle_lookup_table <- list(
 #' gas_auth(email = "yourname@example.com")
 #' }
 gas_auth <- function(
-    email           = gargle::gargle_oauth_email(),
-    path            = NULL,
-    cache           = gargle::gargle_oauth_cache(),
-    use_oob         = gargle::gargle_oob_default(),
-    token           = NULL) {
+    email   = gargle::gargle_oauth_email(),
+    path    = NULL,
+    subject = NULL,
+    cache   = gargle::gargle_oauth_cache(),
+    use_oob = gargle::gargle_oob_default(),
+    token   = NULL) {
 
   # check default app
   app <- gas_oauth_app() %||% gas_default_ouath_app()
@@ -81,6 +82,7 @@ gas_auth <- function(
     app     = app,
     email   = email,
     path    = path,
+    subject = subject,
     package = "rgoogleadminsdk",
     cache   = cache,
     use_oob = use_oob,
