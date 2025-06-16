@@ -8,7 +8,7 @@ app <- NULL
 ## The roxygen comments for these functions are mostly generated from data
 ## in this list and template text maintained in gargle.
 gargle_lookup_table <- list(
-  PACKAGE     = "rgoogleads",
+  PACKAGE     = "rgoogleadminsdk",
   YOUR_STUFF  = "your Google Ads Account",
   PRODUCT     = "Google Workspace Admin",
   API         = "Google Admin SDK",
